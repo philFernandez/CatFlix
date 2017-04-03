@@ -1,34 +1,35 @@
 window.onload = init;
 function init() {
 
-  
-  // api fetch from here...
-  function fetchData(callback) {
-    const endpoint = 'http://netflixroulette.net/api/api.php?title=Attack%20on%20titan';
+
+  function callAPI(userQuery) {
+    const endpoint = 'https://www.netflix.com/search?q=' + userQuery;
     fetch(endpoint)
       .then(blob => blob.json())
-      .then(data => callback(data));
+      .then(data => render(data));
   }
+  
 
-  function getData() {
-    fetchData(function(data) {
-      console.log(data);      
-    });
-  }
-  // to here.
 
-  function doit() {
+  function getUserQuery() {
     // gets value from search box
-    let searchTerm = document.getElementsByTagName('input')[0].value;
-    console.log(searchTerm);
+    const searchTerm = document.getElementsByTagName('input')[0].value;
+    callAPI(searchTerm);
   }
+
+  function render(searchResult) {
+    console.log(searchResult);
+    // console.log(searchResult)
+  }
+
+
   // select button and listen for click event to kick off fn that grabs user input
   const searchButton = document.querySelector('.search');
-  searchButton.addEventListener('click', doit);
+  searchButton.addEventListener('click', getUserQuery);
 
 
-  // temp intiation. needs to be implimented with user search term
-  getData();
-  let test= 'test';
 }
 
+
+
+//cc909f3c6c2cd8d9f8ba69ecc11ad19c3263707a
