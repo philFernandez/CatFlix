@@ -29,5 +29,6 @@ function init() {
 
   // temp intiation. needs to be implimented with user search term
   getData();
+  let test= 'test';
 }
 
