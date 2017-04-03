@@ -1,0 +1,11 @@
+html {
+  background: black; }
+
+.header {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: red;
+  font-size: 10em;
+  position: relative;
+  top: -100px; }
+
+/*# sourceMappingURL=style.css.map */
