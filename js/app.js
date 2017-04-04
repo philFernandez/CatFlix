@@ -1,9 +1,11 @@
 window.onload = init;
 function init() {
 
+  const apiKey = 'cc909f3c6c2cd8d9f8ba69ecc11ad19c3263707a';
 
   function callAPI(userQuery) {
-    const endpoint = 'https://www.netflix.com/search?q=' + userQuery;
+    const endpoint = 'http://api-public.guidebox.com/v2/search?sources=subscription,netflix&api_key='
+      +apiKey+'&type=movie&field=title&query='+userQuery;
     fetch(endpoint)
       .then(blob => blob.json())
       .then(data => render(data));
@@ -19,7 +21,6 @@ function init() {
 
   function render(searchResult) {
     console.log(searchResult);
-    // console.log(searchResult)
   }
 
 
