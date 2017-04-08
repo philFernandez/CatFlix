@@ -1,66 +1,51 @@
 window.onload = init;
 function init() {
+  var url = 'https://www.netflix.com/browse/genre/';
+  var genreCode = {
+    'asian action movies': '77232',
+    'classic action': '46576',
+    'action comedies': '43040'
+  };
 
 
-  // function callAPI(userQuery) {
-  //   const endpoint = 'http://api-public.guidebox.com/v2/search?sources=subscription,netflix&api_key='
-  //     +apiKey+'&type=movie&field=title&query='+userQuery;
-  //   fetch(endpoint)
-  //     .then(blob => blob.json())
-  //     .then(data => render(data));
-  // }
+  let keys = Object.keys(genreCode);
+  
 
- 
-
-  function getUserQuery() {
-    // gets value from search box
-    const searchTerm = document.getElementsByTagName('input')[0].value;
-    callAPI(searchTerm);
+  function getInput() {
+    // gets value in text box when search is clicked
+    // called by button.eventlistener below
+    var userInput = document.getElementById('userInput').value;
+    genreSearch(userInput);
   }
 
-  // function render(searchResult) {
-  //   console.log(searchResult);
-  //   populateMovies();
-  // }
+  function genreSearch(searchValue) {
+    let missCount = 0;
+    // checks each string key value in genreCode key array
+    // for any word match
+    // calls function with elements of matches
+    keys.forEach(function(el) {
+      if (el.indexOf(searchValue) !== -1) {
+        doStuffWithResults(el); // temp name
+      } else {
+        // if non matchs = length of key array
+        // then there was no match at all
+        // probably better way exists to do this
+        missCount++;
+      }
+      if (missCount === keys.length) {
+        doStuffWithNoResults(searchValue);
+      }
+    });
+  }
 
+  function doStuffWithResults(searchHit) {
+    console.log(searchHit);
+  }
 
-  // select button and listen for click event to kick off fn that grabs user input
-  const searchButton = document.querySelector('.search');
-  searchButton.addEventListener('click', getUserQuery);
+  function doStuffWithNoResults(searchMiss) {
+    console.log(searchMiss, 'returned no results!');
+  }
 
-
+  const button = document.querySelector('.search');
+  button.addEventListener('click', getInput);
 }
-
-
-
-//cc909f3c6c2cd8d9f8ba69ecc11ad19c3263707a
-
-/*
- This url loads all available show on netflix??
-
- http://api-public.guidebox.com/v2/shows?sources=netflix&api_key=cc909f3c6c2cd8d9f8ba69ecc11ad19c3263707a
-
-
- return all shows with limit adjusted -
-
- http://api-public.guidebox.com/v2/shows?sources=netflix&limit=100&api_key=cc909f3c6c2cd8d9f8ba69ecc11ad19c3263707a
-
- with offset -
-
- http://api-public.guidebox.com/v2/shows?sources=netflix&limit=250&offset=1250&api_key=cc909f3c6c2cd8d9f8ba69ecc11ad19c3263707a
-*/
-
-/*
- This url loads all available movies on netflix??
-
- http://api-public.guidebox.com/v2/movies?sources=netflix&api_key=cc909f3c6c2cd8d9f8ba69ecc11ad19c3263707a
-*/
-
-/*
- Search for specific movie only on Netflix??
-
- http://api-public.guidebox.com/v2/search?movies?sources=netflix&api_key=cc909f3c6c2cd8d9f8ba69ecc11ad19c3263707a&type=movie&field=title&query=blow
-
- ? in the context below just separates search attributes
- had to add in search? before movies? and then &type=movie&field=title&query=xxxxx
-*/

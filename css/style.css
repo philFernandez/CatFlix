@@ -1,11 +1,26 @@
+body {
+  margin: 0; }
+
 html {
   background: black; }
 
+.container {
+  background: white;
+  padding-bottom: 20px; }
+
+.headerContainer {
+  display: grid; }
+
+.inputContainer {
+  display: grid; }
+
 .header {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  margin: 10px;
   color: red;
-  font-size: 10em;
-  position: relative;
-  top: -100px; }
+  font-size: 3.5vw;
+  grid-column-start: 2; }
+
+.input {
+  grid-column-start: 2; }
 
 /*# sourceMappingURL=style.css.map */
